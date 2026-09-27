@@ -1,0 +1,182 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student List</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        /* Top Bar */
+        .header {
+            background: #1976d2;
+            color: white;
+            padding: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* RecyclerView जैसा container */
+        #studentList {
+            max-width: 700px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        /* Student Item */
+        .student {
+            background: white;
+            margin-bottom: 10px;
+            padding: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+
+            transition: 0.2s;
+        }
+
+        .student:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .student-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .student-class {
+            margin-top: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Description */
+        .description {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #ddd;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .student.active .description {
+            display: block;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            #studentList {
+                padding: 8px;
+            }
+
+            .student {
+                padding: 14px;
+            }
+
+            .student-name {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Student List
+    </div>
+
+    <div id="studentList">
+        Loading...
+    </div>
+
+
+    <script>
+
+        const studentList = document.getElementById("studentList");
+
+        // JSON file load
+        fetch("https://ganilsihora-sudo.github.io/test/std.json")
+
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error("JSON load failed");
+                }
+
+                return response.json();
+            })
+
+            .then(data => {
+
+                studentList.innerHTML = "";
+
+                // students array
+                data.students.forEach(student => {
+
+                    // RecyclerView का एक item
+                    const item = document.createElement("div");
+
+                    item.className = "student";
+
+                    item.innerHTML = `
+                        <div class="student-name">
+                            ${student.name}
+                        </div>
+
+                        <div class="student-class">
+                            Class: ${student.class}
+                        </div>
+
+                        <div class="description">
+                            ${student.description}
+                        </div>
+                    `;
+
+                    // Item पर click
+                    item.addEventListener("click", function () {
+
+                        this.classList.toggle("active");
+
+                    });
+
+                    studentList.appendChild(item);
+
+                });
+
+            })
+
+            .catch(error => {
+
+                studentList.innerHTML = `
+                    <p style="text-align:center;color:red;">
+                        Student data load नहीं हो पाया।
+                    </p>
+                `;
+
+                console.error(error);
+
+            });
+
+    </script>
+
+</body>
+</html>
+```
