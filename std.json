@@ -1,0 +1,254 @@
+{
+  "students": [
+    {
+      "name": "Aarav Sharma",
+      "class": "10",
+      "description": "Aarav is a hardworking and sincere student."
+    },
+    {
+      "name": "Vivaan Gupta",
+      "class": "9",
+      "description": "Vivaan is an active student who enjoys learning new things."
+    },
+    {
+      "name": "Aditya Verma",
+      "class": "8",
+      "description": "Aditya is a friendly student with a good interest in studies."
+    },
+    {
+      "name": "Arjun Singh",
+      "class": "10",
+      "description": "Arjun participates actively in classroom activities."
+    },
+    {
+      "name": "Rohan Kumar",
+      "class": "7",
+      "description": "Rohan is a creative student who enjoys practical activities."
+    },
+    {
+      "name": "Kabir Mishra",
+      "class": "9",
+      "description": "Kabir is a disciplined and hardworking student."
+    },
+    {
+      "name": "Aryan Patel",
+      "class": "8",
+      "description": "Aryan enjoys mathematics and science subjects."
+    },
+    {
+      "name": "Ishaan Joshi",
+      "class": "10",
+      "description": "Ishaan is an enthusiastic student and a good team player."
+    },
+    {
+      "name": "Reyansh Yadav",
+      "class": "6",
+      "description": "Reyansh is curious and enjoys discovering new ideas."
+    },
+    {
+      "name": "Krishna Mehta",
+      "class": "9",
+      "description": "Krishna is a polite and responsible student."
+    },
+    {
+      "name": "Ananya Sharma",
+      "class": "8",
+      "description": "Ananya is sincere and regularly completes her assignments."
+    },
+    {
+      "name": "Diya Gupta",
+      "class": "7",
+      "description": "Diya is creative and enjoys drawing and reading."
+    },
+    {
+      "name": "Aanya Verma",
+      "class": "10",
+      "description": "Aanya is a focused student who works hard in her studies."
+    },
+    {
+      "name": "Myra Singh",
+      "class": "6",
+      "description": "Myra is cheerful and actively participates in school activities."
+    },
+    {
+      "name": "Saanvi Kumar",
+      "class": "9",
+      "description": "Saanvi is an organized and hardworking student."
+    },
+    {
+      "name": "Aadhya Mishra",
+      "class": "8",
+      "description": "Aadhya enjoys reading books and learning new subjects."
+    },
+    {
+      "name": "Kiara Patel",
+      "class": "7",
+      "description": "Kiara is friendly and shows great interest in creative activities."
+    },
+    {
+      "name": "Anika Joshi",
+      "class": "10",
+      "description": "Anika is responsible and performs well in classroom activities."
+    },
+    {
+      "name": "Navya Yadav",
+      "class": "6",
+      "description": "Navya is curious and enjoys participating in group activities."
+    },
+    {
+      "name": "Ira Mehta",
+      "class": "9",
+      "description": "Ira is a sincere student with a positive attitude."
+    },
+    {
+      "name": "Dev Sharma",
+      "class": "8",
+      "description": "Dev enjoys science and practical learning."
+    },
+    {
+      "name": "Yash Gupta",
+      "class": "10",
+      "description": "Yash is hardworking and takes his studies seriously."
+    },
+    {
+      "name": "Rahul Verma",
+      "class": "7",
+      "description": "Rahul is friendly and enjoys sports and classroom activities."
+    },
+    {
+      "name": "Kunal Singh",
+      "class": "9",
+      "description": "Kunal is disciplined and always tries to improve."
+    },
+    {
+      "name": "Mohit Kumar",
+      "class": "6",
+      "description": "Mohit is an energetic student who enjoys learning."
+    },
+    {
+      "name": "Nikhil Mishra",
+      "class": "8",
+      "description": "Nikhil is interested in computers and technology."
+    },
+    {
+      "name": "Ravi Patel",
+      "class": "10",
+      "description": "Ravi is sincere and actively participates in class discussions."
+    },
+    {
+      "name": "Sahil Joshi",
+      "class": "7",
+      "description": "Sahil is a friendly student who enjoys mathematics."
+    },
+    {
+      "name": "Aman Yadav",
+      "class": "9",
+      "description": "Aman is hardworking and cooperative with his classmates."
+    },
+    {
+      "name": "Vikram Mehta",
+      "class": "8",
+      "description": "Vikram enjoys sports and practical learning activities."
+    },
+    {
+      "name": "Piyush Sharma",
+      "class": "6",
+      "description": "Piyush is curious and enjoys asking questions."
+    },
+    {
+      "name": "Harsh Gupta",
+      "class": "10",
+      "description": "Harsh is focused and regularly completes his schoolwork."
+    },
+    {
+      "name": "Manav Verma",
+      "class": "9",
+      "description": "Manav is creative and enjoys computer-related activities."
+    },
+    {
+      "name": "Dhruv Singh",
+      "class": "7",
+      "description": "Dhruv is active and enjoys participating in sports."
+    },
+    {
+      "name": "Ayush Kumar",
+      "class": "8",
+      "description": "Ayush is a sincere student with a strong interest in science."
+    },
+    {
+      "name": "Abhinav Mishra",
+      "class": "10",
+      "description": "Abhinav is responsible and works hard to achieve his goals."
+    },
+    {
+      "name": "Parth Patel",
+      "class": "6",
+      "description": "Parth is cheerful and enjoys learning through activities."
+    },
+    {
+      "name": "Ritvik Joshi",
+      "class": "9",
+      "description": "Ritvik is interested in technology and computer studies."
+    },
+    {
+      "name": "Sameer Yadav",
+      "class": "8",
+      "description": "Sameer is friendly, disciplined, and hardworking."
+    },
+    {
+      "name": "Tanish Mehta",
+      "class": "7",
+      "description": "Tanish enjoys reading and participating in school activities."
+    },
+    {
+      "name": "Riya Sharma",
+      "class": "10",
+      "description": "Riya is sincere and has a strong interest in learning."
+    },
+    {
+      "name": "Meera Gupta",
+      "class": "9",
+      "description": "Meera is creative and actively participates in class activities."
+    },
+    {
+      "name": "Ishita Verma",
+      "class": "8",
+      "description": "Ishita is hardworking and enjoys reading books."
+    },
+    {
+      "name": "Kavya Singh",
+      "class": "6",
+      "description": "Kavya is cheerful and enjoys creative activities."
+    },
+    {
+      "name": "Pooja Kumar",
+      "class": "7",
+      "description": "Pooja is responsible and completes her work on time."
+    },
+    {
+      "name": "Sneha Mishra",
+      "class": "10",
+      "description": "Sneha is focused and actively participates in classroom discussions."
+    },
+    {
+      "name": "Nisha Patel",
+      "class": "8",
+      "description": "Nisha is friendly and enjoys learning new subjects."
+    },
+    {
+      "name": "Simran Joshi",
+      "class": "9",
+      "description": "Simran is disciplined and interested in science and technology."
+    },
+    {
+      "name": "Tanvi Yadav",
+      "class": "6",
+      "description": "Tanvi is curious and enjoys group learning activities."
+    },
+    {
+      "name": "Muskan Mehta",
+      "class": "7",
+      "description": "Muskan is sincere, creative, and enthusiastic about learning."
+    }
+  ]
+}
