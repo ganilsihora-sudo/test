@@ -106,6 +106,50 @@
         .btn:hover {
             background-color: #45b08c;
         }
+
+        /* Custom Win Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: #252830;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #393e46;
+            animation: popUp 0.3s ease-in-out;
+        }
+
+        @keyframes popUp {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h2 {
+            color: #4ecca3;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #cccccc;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -117,13 +161,25 @@
         <button class="btn" id="restartBtn">Restart Game</button>
     </div>
 
+    <!-- Custom Win Popup Modal -->
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <h2>You Won! 🎉</h2>
+            <p>Completed in <span id="finalMoves">0</span> moves.</p>
+            <button class="btn" id="modalRestartBtn">Play Again</button>
+        </div>
+    </div>
+
     <script>
         const emojis = ['🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍍', '🥝'];
-        let cardsArray = [...emojis, ...emojis]; // जोड़े बनाने के लिए डबल करें
+        let cardsArray = [...emojis, ...emojis];
 
         const gameGrid = document.getElementById('gameGrid');
         const movesDisplay = document.getElementById('moves');
         const restartBtn = document.getElementById('restartBtn');
+        const winModal = document.getElementById('winModal');
+        const finalMoves = document.getElementById('finalMoves');
+        const modalRestartBtn = document.getElementById('modalRestartBtn');
 
         let hasFlippedCard = false;
         let lockBoard = false;
@@ -131,9 +187,9 @@
         let moves = 0;
         let matchedPairs = 0;
 
-        // गेम शुरू करने का फंक्शन
         function initGame() {
             gameGrid.innerHTML = '';
+            winModal.style.display = 'none'; // मोडल छिपाएं
             moves = 0;
             matchedPairs = 0;
             movesDisplay.textContent = moves;
@@ -142,10 +198,8 @@
             firstCard = null;
             secondCard = null;
 
-            // कार्ड्स को शफल (रैंडम) करना
             cardsArray.sort(() => 0.5 - Math.random());
 
-            // कार्ड्स को HTML में जोड़ना
             cardsArray.forEach(emoji => {
                 const card = document.createElement('div');
                 card.classList.add('card');
@@ -161,7 +215,6 @@
             });
         }
 
-        // कार्ड पलटने का लॉजिक
         function flipCard() {
             if (lockBoard) return;
             if (this === firstCard) return;
@@ -181,14 +234,11 @@
             checkForMatch();
         }
 
-        // चेक करें कि क्या दोनों कार्ड मैच हुए हैं
         function checkForMatch() {
             let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
-
             isMatch ? disableCards() : unflipCards();
         }
 
-        // अगर कार्ड मैच हो जाएं
         function disableCards() {
             firstCard.removeEventListener('click', flipCard);
             secondCard.removeEventListener('click', flipCard);
@@ -198,15 +248,14 @@
 
             if (matchedPairs === emojis.length) {
                 setTimeout(() => {
-                    alert(`Congratulations! You won in ${moves} moves! 🎉`);
+                    finalMoves.textContent = moves;
+                    winModal.style.display = 'flex'; // कस्टम मोडल दिखाएं
                 }, 400);
             }
         }
 
-        // अगर कार्ड मैच न हों तो वापस पलट जाएं
         function unflipCards() {
             lockBoard = true;
-
             setTimeout(() => {
                 firstCard.classList.remove('flip');
                 secondCard.classList.remove('flip');
@@ -220,8 +269,8 @@
         }
 
         restartBtn.addEventListener('click', initGame);
+        modalRestartBtn.addEventListener('click', initGame);
 
-        // पहली बार गेम लोड होने पर
         initGame();
     </script>
 </body>
