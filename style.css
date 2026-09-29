@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.game-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 28px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+h1 {
+    color: #1e3c72;
+    margin-bottom: 8px;
+    font-size: 26px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+    border-color: #2a5298;
+}
+
+button {
+    background: #2a5298;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.98);
+    background: #1e3c72;
+}
+
+.message {
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 24px;
+    color: #333;
+}
+
+.stats {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.stats span {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.restart-btn {
+    background: #28a745;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.restart-btn:active {
+    background: #218838;
+}

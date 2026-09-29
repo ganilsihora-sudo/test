@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>नंबर गेसिंग गेम</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>नंबर पहचानो!</h1>
+        <p class="subtitle">मैंने 1 से 100 के बीच एक नंबर चुना है। क्या आप उसे ढूंढ सकते हैं?</p>
+
+        <div class="input-section">
+            <input type="number" id="guessInput" placeholder="नंबर डालें (1-100)" min="1" max="100">
+            <button id="guessBtn">अनुमान लगाएं</button>
+        </div>
+
+        <div class="message" id="message">शुरू करने के लिए कोई नंबर लिखें!</div>
+
+        <div class="stats">
+            <p>बचे हुए प्रयास: <span id="attempts">7</span></p>
+        </div>
+
+        <button id="restartBtn" class="restart-btn" style="display: none;">दोबारा खेलें</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
