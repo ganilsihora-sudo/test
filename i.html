@@ -1,31 +1,228 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>नंबर गेसिंग गेम</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Matching Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #4ecca3;
+        }
+
+        .score-board {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #cccccc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            perspective: 1000px;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background-color: #393e46;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 32px;
+        }
+
+        .card-front {
+            background: #00adb5;
+            color: white;
+            font-size: 20px;
+        }
+
+        .card-back {
+            background: #eeeeee;
+            transform: rotateY(180deg);
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4ecca3;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45b08c;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="game-container">
-        <h1>नंबर पहचानो!</h1>
-        <p class="subtitle">मैंने 1 से 100 के बीच एक नंबर चुना है। क्या आप उसे ढूंढ सकते हैं?</p>
-
-        <div class="input-section">
-            <input type="number" id="guessInput" placeholder="नंबर डालें (1-100)" min="1" max="100">
-            <button id="guessBtn">अनुमान लगाएं</button>
-        </div>
-
-        <div class="message" id="message">शुरू करने के लिए कोई नंबर लिखें!</div>
-
-        <div class="stats">
-            <p>बचे हुए प्रयास: <span id="attempts">7</span></p>
-        </div>
-
-        <button id="restartBtn" class="restart-btn" style="display: none;">दोबारा खेलें</button>
+    <div class="container">
+        <h1>Memory Match</h1>
+        <div class="score-board">Moves: <span id="moves">0</span></div>
+        <div class="grid" id="gameGrid"></div>
+        <button class="btn" id="restartBtn">Restart Game</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const emojis = ['🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍍', '🥝'];
+        let cardsArray = [...emojis, ...emojis]; // जोड़े बनाने के लिए डबल करें
+
+        const gameGrid = document.getElementById('gameGrid');
+        const movesDisplay = document.getElementById('moves');
+        const restartBtn = document.getElementById('restartBtn');
+
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+        let moves = 0;
+        let matchedPairs = 0;
+
+        // गेम शुरू करने का फंक्शन
+        function initGame() {
+            gameGrid.innerHTML = '';
+            moves = 0;
+            matchedPairs = 0;
+            movesDisplay.textContent = moves;
+            hasFlippedCard = false;
+            lockBoard = false;
+            firstCard = null;
+            secondCard = null;
+
+            // कार्ड्स को शफल (रैंडम) करना
+            cardsArray.sort(() => 0.5 - Math.random());
+
+            // कार्ड्स को HTML में जोड़ना
+            cardsArray.forEach(emoji => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.emoji = emoji;
+
+                card.innerHTML = `
+                    <div class="card-face card-front">?</div>
+                    <div class="card-face card-back">${emoji}</div>
+                `;
+
+                card.addEventListener('click', flipCard);
+                gameGrid.appendChild(card);
+            });
+        }
+
+        // कार्ड पलटने का लॉजिक
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+
+            this.classList.add('flip');
+
+            if (!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = this;
+                return;
+            }
+
+            secondCard = this;
+            moves++;
+            movesDisplay.textContent = moves;
+
+            checkForMatch();
+        }
+
+        // चेक करें कि क्या दोनों कार्ड मैच हुए हैं
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
+
+            isMatch ? disableCards() : unflipCards();
+        }
+
+        // अगर कार्ड मैच हो जाएं
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+
+            matchedPairs++;
+            resetBoard();
+
+            if (matchedPairs === emojis.length) {
+                setTimeout(() => {
+                    alert(`Congratulations! You won in ${moves} moves! 🎉`);
+                }, 400);
+            }
+        }
+
+        // अगर कार्ड मैच न हों तो वापस पलट जाएं
+        function unflipCards() {
+            lockBoard = true;
+
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                resetBoard();
+            }, 800);
+        }
+
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+
+        restartBtn.addEventListener('click', initGame);
+
+        // पहली बार गेम लोड होने पर
+        initGame();
+    </script>
 </body>
 </html>
